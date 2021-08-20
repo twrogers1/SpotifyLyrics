@@ -79,6 +79,9 @@ class GeniusLyrics(lyricsgenius.Genius):
         # then convert any string of 3+ consecutive \n to only 2
         # also clean out a non-lyric phrase often presented in the data
         lyrics = self.lyrics(song_url=song_url)
+        if lyrics is None:
+            # no lyrics content, so we'll treat it as lyrics not found
+            raise KeyError(f"Lyrics not found for {artist} - {song}")
         lyrics = re.sub(r"(\[[\w\s\d]*\]\n)", "\n\\1", lyrics, re.MULTILINE)
         lyrics = re.sub("\n{3,}", "\n\n", lyrics)
         lyrics = re.sub(r"\d*EmbedShare URLCopyEmbedCopy$", "", lyrics)
@@ -101,14 +104,14 @@ def main():
     user_creds = UserCreds()
     genius = GeniusLyrics(user_creds.GENIUS_TOKEN)
     
-    artist = ""
-    song = ""
+    artist = "delta sleep"
+    song = "ghost"
     try:
         genius.fetch_lyrics(artist, song)
         print(genius.full_title)
         print(genius.url)
         print(genius.lyric_text)
-    except LyricsNotFound as err:
+    except KeyError as err:
         print(err)
 
 
