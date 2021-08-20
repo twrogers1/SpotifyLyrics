@@ -1,5 +1,6 @@
 import sys
 import time
+import datetime as dt
 
 import spotipy
 import streamlit as st
@@ -11,6 +12,11 @@ from APIs.lyrics import GeniusLyrics
 from APIs.spotify import Track
 
 
+def getdate():
+    """ Return the current timestamp """
+    return str(dt.datetime.now())
+
+
 def main():
     st.set_page_config(
         page_title="Spotify Lyrics",
@@ -18,6 +24,8 @@ def main():
         initial_sidebar_state="collapsed",
         page_icon="🎵"
     )
+    
+    print("\n" + f"{getdate()} Running script.")    
     
     with st.sidebar:
         st.markdown("""
@@ -52,6 +60,7 @@ def main():
             track = Track(now_playing)
             
             if last_track != track:
+                print(f"{getdate()}: Current Track: " + "\n" + str(track))
                 page.empty()
                 with page.container():
                     img, title = st.columns([2,4])
@@ -67,7 +76,9 @@ def main():
                     
                     try:
                         with st.spinner(text="Fetching lyrics..."):
+                            print(f"{getdate()}: Fetching lyrics for {track.artist} - {track.song}...")
                             genius.fetch_lyrics(track.artist, track.song)
+                            print(f"{getdate()}: Done.")
                             # finish formatting lyric text
                             lyrics = genius.full_title + "\n\n" + genius.lyric_text
                             lyrics = lyrics.replace("\n\n\n", "\n\n")  # sometimes we get too many line breaks introduced
