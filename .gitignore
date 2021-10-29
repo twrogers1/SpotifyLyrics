@@ -4,6 +4,7 @@
 .gitattributes
 .DS_Store
 SongData/
+.idea
 
 
 # Byte-compiled / optimized / DLL files
