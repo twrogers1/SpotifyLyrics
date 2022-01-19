@@ -1,3 +1,5 @@
+***Note: this projet is now obsolete as Spotify has first party support for lyrics in their desktop and mobile apps.***
+
 # SpotifyLyrics
 
 Display lyrics for your currently playing Spotify track within a Streamlit webapp.
