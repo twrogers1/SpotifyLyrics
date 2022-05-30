@@ -79,8 +79,7 @@ def main():
                             print(f"{getdate()}: Done.")
                             # finish formatting lyric text
                             lyrics = genius.full_title + "\n\n" + genius.lyric_text
-                            lyrics = lyrics.replace("\n\n\n",
-                                                    "\n\n")  # sometimes we get too many line breaks introduced
+                            lyrics = lyrics.replace("\n\n\n", "\n\n")  # sometimes we get too many line breaks introduced
 
                         st.subheader("Lyrics")
                         st.code(lyrics, language=None)
