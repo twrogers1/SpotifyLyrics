@@ -1,4 +1,4 @@
-***Note: this projet is now obsolete as Spotify has first party support for lyrics in their desktop and mobile apps.***
+***Note: this project is now obsolete as Spotify has first party support for lyrics in their desktop and mobile apps.***
 
 # SpotifyLyrics
 
